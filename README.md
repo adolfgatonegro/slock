@@ -1,12 +1,10 @@
-# Gatonegro's dmenu
+# Gatonegro's slock
 
-Custom build of [dmenu](https://tools.suckless.org/dmenu) with various patches
+Custom build of [slock](https://tools.suckless.org/slock) with various patches
 applied:
 
 + **alpha** patch for transparency.
-+ **line-height** to modify the line hight of text in the menu.
-+ **mouse-support** for, well...
-+ **password** to mask password inputs using `-P`.
-+ **reject-no-match** to reject input if it would result in no matching items
-  using `-r`.
-+ **xresources** to configure colours and font settings via Xresources.
++ **controlclear** to prevent control keys from triggering a failure.
++ **dpms** interacts with DPMS to shut down the monitor.
++ **mediakeys** to preserve media key functionality when locked.
++ **message** sets a custom message.
