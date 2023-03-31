@@ -7,4 +7,3 @@ applied:
 + **controlclear** to prevent control keys from triggering a failure.
 + **dpms** interacts with DPMS to shut down the monitor.
 + **mediakeys** to preserve media key functionality when locked.
-+ **message** sets a custom message.

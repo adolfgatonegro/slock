@@ -69,7 +69,6 @@ die(const char *errstr, ...)
 	exit(1);
 }
 
-#include "patch/include.c"
 
 #ifdef __linux__
 #include <fcntl.h>
@@ -222,7 +221,6 @@ readpw(Display *dpy, struct xrandr *rr, struct lock **locks, int nscreens,
 					                     locks[screen]->win,
 					                     locks[screen]->colors[color]);
 					XClearWindow(dpy, locks[screen]->win);
-					writemessage(dpy, locks[screen]->win, screen);
 				}
 				oldc = color;
 			}
@@ -338,7 +336,7 @@ lockscreen(Display *dpy, struct xrandr *rr, int screen)
 static void
 usage(void)
 {
-	die("usage: slock [-v] [-f] [-m message] [cmd [arg ...]]\n");
+	die("usage: slock [-v] [cmd [arg ...]]\n");
 }
 
 int
@@ -353,22 +351,9 @@ main(int argc, char **argv) {
 	Display *dpy;
 	int s, nlocks, nscreens;
 	CARD16 standby, suspend, off;
-	int i, count_fonts;
-	char **font_names;
 	ARGBEGIN {
 	case 'v':
 		fprintf(stderr, "slock-"VERSION"\n");
-		return 0;
-	case 'm':
-		message = EARGF(usage());
-		break;
-	case 'f':
-		if (!(dpy = XOpenDisplay(NULL)))
-			die("slock: cannot open display\n");
-		font_names = XListFonts(dpy, "*", 10000 /* list 10000 fonts*/, &count_fonts);
-		for (i=0; i<count_fonts; i++) {
-			fprintf(stderr, "%s\n", *(font_names+i));
-		}
 		return 0;
 	default:
 		usage();
@@ -418,7 +403,6 @@ main(int argc, char **argv) {
 		die("slock: out of memory\n");
 	for (nlocks = 0, s = 0; s < nscreens; s++) {
 		if ((locks[s] = lockscreen(dpy, &rr, s)) != NULL) {
-			writemessage(dpy, locks[s]->win, s);
 			nlocks++;
 		} else {
 			break;

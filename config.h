@@ -8,15 +8,6 @@ static const char *colorname[NUMCOLS] = {
 	[FAILED] = "#bb00ff",   /* wrong password */
 };
 
-/* default message */
-static const char * message = "gatoneg.ro";
-
-/* text color */
-static const char * text_color = "#c1c1d1";
-
-/* text size (must be a valid size) */
-static const char * font_name = "-misc-roboto mono-bold-r-normal--0-0-0-0-m-0-iso8859-16";
-
 /* lock screen opacity */
 static const float alpha = 0.9;
 
